@@ -1,7 +1,6 @@
 package com.kevinraupp.studyws.services;
 
 import com.kevinraupp.studyws.entities.Order;
-import com.kevinraupp.studyws.entities.User;
 import com.kevinraupp.studyws.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
