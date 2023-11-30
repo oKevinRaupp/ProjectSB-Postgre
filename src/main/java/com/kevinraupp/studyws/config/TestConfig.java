@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 @Configuration
@@ -64,5 +65,11 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi03 = new OrderItem(order02, p03, 2, p03.getPrice());
         OrderItem oi04 = new OrderItem(order03, p05, 2, p05.getPrice());
         orderItemRepository.saveAll(Arrays.asList(oi01,oi02,oi03,oi04));
+
+        Payment payment01 = new Payment(Instant.now().plus(15, ChronoUnit.MINUTES),order01);
+        order01.setPayment(payment01);
+
+        orderRepository.save(order01);
+
     }
 }
