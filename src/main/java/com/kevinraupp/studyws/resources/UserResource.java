@@ -3,12 +3,12 @@ package com.kevinraupp.studyws.resources;
 import com.kevinraupp.studyws.entities.User;
 import com.kevinraupp.studyws.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +23,15 @@ public class UserResource {
         return ResponseEntity.ok(list);
     }
     @GetMapping(value = "/{id}")
-    public Optional<User> findById(@PathVariable Long id){
+    public Optional<User> findById(@RequestParam(name = "id",defaultValue = "1") Long id){
         return userService.findById(id);
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<User> insert(@RequestBody User user){
+        user = userService.insert(user);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(user.getId()).toUri();
+        return ResponseEntity.created(uri).body(user);
     }
 
 }
