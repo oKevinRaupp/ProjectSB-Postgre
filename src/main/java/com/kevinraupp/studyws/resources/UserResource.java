@@ -25,6 +25,7 @@ public class UserResource {
     @GetMapping(value = "/{id}")
     public Optional<User> findById(@RequestParam(name = "id",defaultValue = "1") Long id){
         return userService.findById(id);
+
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -32,6 +33,11 @@ public class UserResource {
         user = userService.insert(user);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).body(user);
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
