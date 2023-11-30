@@ -1,5 +1,6 @@
 package com.kevinraupp.studyws.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kevinraupp.studyws.entities.pk.OrderItemPK;
 import jakarta.persistence.*;
 
@@ -16,6 +17,7 @@ public class Payment implements Serializable {
     private Instant instant;
     @OneToOne
     @MapsId
+    @JsonIgnore
     private Order order;
 
     public Payment() {
