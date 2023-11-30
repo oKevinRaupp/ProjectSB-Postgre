@@ -23,8 +23,9 @@ public class UserResource {
         return ResponseEntity.ok(list);
     }
     @GetMapping(value = "/{id}")
-    public Optional<User> findById(@PathVariable Long id){
-        return userService.findById(id);
+    public ResponseEntity<User> findById(@PathVariable Long id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user);
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

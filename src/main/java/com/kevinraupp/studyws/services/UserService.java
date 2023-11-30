@@ -2,6 +2,7 @@ package com.kevinraupp.studyws.services;
 
 import com.kevinraupp.studyws.entities.User;
 import com.kevinraupp.studyws.repositories.UserRepository;
+import com.kevinraupp.studyws.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> findById(Long id){
-        return userRepository.findById(id);
+    public User findById(Long id){
+        Optional<User> user = userRepository.findById(id);
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public  User insert(User user){
