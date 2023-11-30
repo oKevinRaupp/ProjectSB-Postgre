@@ -23,9 +23,8 @@ public class UserResource {
         return ResponseEntity.ok(list);
     }
     @GetMapping(value = "/{id}")
-    public Optional<User> findById(@RequestParam(name = "id",defaultValue = "1") Long id){
+    public Optional<User> findById(@PathVariable Long id){
         return userService.findById(id);
-
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,6 +37,12 @@ public class UserResource {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id,@RequestBody User user){
+        user = userService.update(id,user);
+        return ResponseEntity.ok().body(user);
     }
 
 }
