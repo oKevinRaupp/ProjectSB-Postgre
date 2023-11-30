@@ -1,12 +1,15 @@
 package com.kevinraupp.studyws.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kevinraupp.studyws.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -19,8 +22,9 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
-
     private Integer orderStatus;
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> itens = new HashSet<>();
 
     public Order() {
     }
@@ -63,6 +67,9 @@ public class Order implements Serializable {
         if(orderStatus != null){
             this.orderStatus = orderStatus.getCode();
         }
+    }
+    public Set<OrderItem> getItens() {
+        return itens;
     }
 
     @Override
