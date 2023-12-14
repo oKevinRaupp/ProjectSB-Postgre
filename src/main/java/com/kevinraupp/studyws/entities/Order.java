@@ -19,14 +19,14 @@ public class Order implements Serializable {
     private Long id;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
     private Instant instant;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private User client;
     private Integer orderStatus;
-    @OneToMany(mappedBy = "id.order")
+    @OneToMany(mappedBy = "id.order",fetch = FetchType.EAGER)
     private Set<OrderItem> itens = new HashSet<>();
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Payment payment;
 
     public Order() {

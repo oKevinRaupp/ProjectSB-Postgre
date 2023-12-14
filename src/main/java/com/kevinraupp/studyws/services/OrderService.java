@@ -7,18 +7,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public List<Order> finall(){
+    private Logger logger = Logger.getLogger(CategoryService.class.getName());
+
+    public List<Order> finall() {
+        logger.info("Finding all orders!");
         return orderRepository.findAll();
     }
 
-    public Optional<Order> findById(Long id){
+    public Optional<Order> findById(Long id) {
+        logger.info("Finding one order!");
         return orderRepository.findById(id);
     }
-
 }

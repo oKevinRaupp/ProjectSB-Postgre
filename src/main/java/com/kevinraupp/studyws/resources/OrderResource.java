@@ -17,13 +17,15 @@ import java.util.Optional;
 public class OrderResource {
     @Autowired
     private OrderService orderService;
+
     @GetMapping
-    public ResponseEntity<List<Order>> findAll(){
+    public ResponseEntity<List<Order>> findAll() {
         List<Order> list = orderService.finall();
         return ResponseEntity.ok(list);
     }
+
     @GetMapping(value = "/{id}")
-    public Optional<Order> findById(@PathVariable Long id){
+    public Optional<Order> findById(@PathVariable Long id) {
         return orderService.findById(id);
     }
 

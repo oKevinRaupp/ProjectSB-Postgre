@@ -62,6 +62,4 @@ public class UserService {
             throw new DataBaseException(e.getMessage());
         }
     }
-
-
 }

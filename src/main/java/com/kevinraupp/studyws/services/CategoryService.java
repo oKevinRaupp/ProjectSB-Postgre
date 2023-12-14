@@ -46,11 +46,16 @@ public class CategoryService {
         }
     }
 
-    public void delete(Long id) {
+    public void delete(Long id, Category category) {
         try {
             if (!categoryRepository.existsById(id)) throw new ResourceNotFoundException(id);
-            logger.info("Deleting a category = " + id);
-            categoryRepository.deleteById(id);
+            if (!category.getProducts().isEmpty()) {
+                logger.info("Deleting a category with products! " + category.getProducts().toString());
+                throw new DataBaseException("Deleting a category with products!");
+            } else {
+                logger.info("Deleting a category = " + id);
+                categoryRepository.deleteById(id);
+            }
         } catch (DataIntegrityViolationException e) {
             throw new DataBaseException(e.getMessage());
         }
