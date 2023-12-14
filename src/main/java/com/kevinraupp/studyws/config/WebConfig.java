@@ -9,12 +9,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+@Configuration
 public class WebConfig implements WebMvcConfigurer {
     private static final MediaType MEDIA_TYPE_APPLICATION_YML = MediaType.valueOf("application/x-yaml");
+
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new YmlJackson2HttpMessageConverter());
     }
+
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorParameter(false).ignoreAcceptHeader(false)
