@@ -52,7 +52,7 @@ public class CategoryResource {
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Adds a new category", description = "Adds a new category by passing in a JSON, XML or YML!", tags = {"Category"},
+    @Operation(summary = "Adds a new category", description = "Adds a new category by passing a RequestBody in JSON, XML or YML!", tags = {"Category"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Category.class))),
                     @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -68,7 +68,7 @@ public class CategoryResource {
 
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Updates a category", description = "Updates a category by passing in a JSON, XML or YML!", tags = {"Category"},
+    @Operation(summary = "Updates a category", description = "Updates a category by passing an {id} and a RequestBody in JSON, XML or YML!", tags = {"Category"},
             responses = {@ApiResponse(description = "Updated", responseCode = "200", content = @Content(schema = @Schema(implementation = Category.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -80,7 +80,7 @@ public class CategoryResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    @Operation(summary = "Deletes a category", description = "Deletes a category by passing an Id", tags = {"Category"},
+    @Operation(summary = "Deletes a category", description = "Deletes a category by passing an {id}", tags = {"Category"},
             responses = {@ApiResponse(description = "No content", responseCode = "204", content = @Content(schema = @Schema(implementation = Category.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),

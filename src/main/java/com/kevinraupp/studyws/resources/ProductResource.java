@@ -52,7 +52,7 @@ public class ProductResource {
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Adds a new product", description = "Adds a new product by passing in a JSON, XML or YML!", tags = {"Product"},
+    @Operation(summary = "Adds a new product", description = "Adds a new product by passing a RequestBody in JSON, XML or YML!", tags = {"Product"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Product.class))),
                     @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -68,7 +68,7 @@ public class ProductResource {
 
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Updates a product", description = "Updates a product by passing in a JSON, XML or YML!", tags = {"Product"},
+    @Operation(summary = "Updates a product", description = "Updates a product by passing an {id} and a RequestBody in JSON, XML or YML!", tags = {"Product"},
             responses = {@ApiResponse(description = "Updated", responseCode = "200", content = @Content(schema = @Schema(implementation = Product.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -80,7 +80,7 @@ public class ProductResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    @Operation(summary = "Deletes a product", description = "Deletes a product by passing an Id", tags = {"Product"},
+    @Operation(summary = "Deletes a product", description = "Deletes a product by passing an {id}", tags = {"Product"},
             responses = {@ApiResponse(description = "No content", responseCode = "204", content = @Content(schema = @Schema(implementation = Product.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),

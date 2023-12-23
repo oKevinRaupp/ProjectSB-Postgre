@@ -52,7 +52,7 @@ public class UserResource {
 
     @PostMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Adds a new user", description = "Adds a new user by passing in a JSON, XML or YML!", tags = {"User"},
+    @Operation(summary = "Adds a new user", description = "Adds a new user by passing a RequestBody in JSON, XML or YML!", tags = {"User"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = User.class))),
                     @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -68,7 +68,7 @@ public class UserResource {
 
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML},
             consumes = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Updates a user", description = "Updates a user by passing in a JSON, XML or YML!", tags = {"User"},
+    @Operation(summary = "Updates a user", description = "Updates a user by passing an {id} and a RequestBody in JSON, XML or YML!", tags = {"User"},
             responses = {@ApiResponse(description = "Updated", responseCode = "200", content = @Content(schema = @Schema(implementation = User.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
@@ -80,7 +80,7 @@ public class UserResource {
     }
 
     @DeleteMapping(value = "/{id}")
-    @Operation(summary = "Deletes a user", description = "Deletes a user by passing an Id", tags = {"User"},
+    @Operation(summary = "Deletes a user", description = "Deletes a user by passing an {id}", tags = {"User"},
             responses = {@ApiResponse(description = "No content", responseCode = "204", content = @Content(schema = @Schema(implementation = User.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
