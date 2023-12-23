@@ -26,7 +26,7 @@ public class OrderResource {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+    @GetMapping(produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Operation(summary = "Finds all orders", description = "Finds all orders", tags = {"Order"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Order.class)))}),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -38,7 +38,7 @@ public class OrderResource {
         return ResponseEntity.ok(list);
     }
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Operation(summary = "Finds a order", description = "Finds a order by passing an {id}", tags = {"Order"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Order.class))),
                     @ApiResponse(description = "No content", responseCode = "204", content = @Content),
