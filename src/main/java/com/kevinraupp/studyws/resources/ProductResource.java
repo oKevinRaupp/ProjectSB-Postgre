@@ -39,7 +39,7 @@ public class ProductResource {
     }
 
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML})
-    @Operation(summary = "Finds a product", description = "Finds a product by product an {id}", tags = {"Product"},
+    @Operation(summary = "Finds a product", description = "Finds a product by passing an {id}", tags = {"Product"},
             responses = {@ApiResponse(description = "Success", responseCode = "200", content = @Content(schema = @Schema(implementation = Product.class))),
                     @ApiResponse(description = "No content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
